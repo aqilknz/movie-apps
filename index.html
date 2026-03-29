@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Films - MovieSpace</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+        :root { --font-outfit: "Outfit", sans-serif; }
+        body { font-family: var(--font-outfit); }
+
+        /* Menghilangkan panah default browser agar bisa menggunakan icon custom */
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+    </style>
+</head>
+<body class="bg-zinc-800 text-white min-h-screen">
+
+    <header class="sticky top-0 z-50 bg-zinc-800 backdrop-blur-md border-b border-pink-600">
+        <nav class="p-4 flex justify-between items-center px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+                <img src="src/icons/logo.svg" alt="Logo" class="h-8 w-auto">
+                <span class="text-pink-600 font-bold text-xl tracking-wider uppercase">MovieSpace</span>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="index.html" class="text-pink-500 transition uppercase text-sm font-bold border-b-2 border-pink-500 pb-1">All Films</a>
+                <a href="pages/watchlist.html" onclick="handleWatchlistAccess()" class="hover:text-pink-500 transition uppercase text-sm font-medium text-zinc-400">My Watchlists</a>
+                <div id="userProfile" class="flex items-center gap-2">
+                    <button id="loginBtn" class="bg-pink-600 hover:bg-pink-700 px-6 py-2 rounded-full text-sm font-bold uppercase transition">Login</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold mb-6 text-pink-600">All Films (<span id="movieCount">0</span>)</h1>
+            
+            <div class="flex flex-wrap gap-4">
+                <div class="relative min-w-[160px]">
+                    <select id="genreFilter" class="w-full bg-zinc-800 border border-zinc-700 text-zinc-200 px-4 py-2 rounded-full text-sm focus:outline-none focus:border-pink-600 transition cursor-pointer">
+                        <option value="" selected disabled >Genre</option>
+                    </select>
+                    <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                        <img src="src/icons/arrow_drop_down.svg" alt="dropdown" class="w-5 h-5 opacity-90">
+                    </div>
+                </div>
+
+                <div class="relative min-w-[180px]">
+                <select id="sortIMDB" class="w-full bg-zinc-800 border border-zinc-700 text-zinc-200 px-4 py-2 rounded-full text-sm focus:outline-none focus:border-pink-600 transition cursor-pointer appearance-none">
+                    <option value="" selected disabled>Sort By Rating</option>
+                    <!-- <option value="high" class="bg-zinc-800">Highest Rating</option>
+                    <option value="low" class="bg-zinc-800">Lowest Rating</option> -->
+                </select>
+                <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
+                    <img src="src/icons/swap_vert.svg" alt="updown" class="w-4 h-4 opacity-90">
+                </div>
+            </div>
+        </header>
+
+        <section id="movieContainer" class="grid grid-cols-1 gap-8">
+            <div class="text-center py-20 text-zinc-500 italic">Loading ...</div>
+        </section>
+
+        <footer class="mt-12 flex justify-end items-center gap-4 text-sm text-zinc-400">
+            <span>Items per page: 10</span>
+            <span>1 - 10 of 100</span>
+            <div class="flex gap-2">
+                <button id="prevBtn" class="p-2 hover:text-pink-500 transition-colors text-xl"><</button>
+                <button id="nextBtn" class="p-2 hover:text-pink-500 transition-colors text-xl">></button>
+            </div>
+        </footer>
+    </main>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
