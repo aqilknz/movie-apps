@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Watchlists - MovieSpace</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+        :root {
+            --font-outfit: "Outfit", sans-serif;
+        }
+
+        body {
+            font-family: var(--font-outfit);
+        }
+    </style>
+</head>
+
+<body class="bg-zinc-800 text-white min-h-screen">
+
+    <header class="sticky top-0 z-50 bg-zinc-800 backdrop-blur-md border-b border-pink-600">
+        <nav class="p-4 flex justify-between items-center px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+                <img src="../src/icons/logo.svg" alt="Logo" class="h-8 w-auto">
+                <span class="text-pink-600 font-bold text-xl tracking-wider uppercase">MovieSpace</span>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="movies.html" class="hover:text-pink-500 transition uppercase text-sm font-medium">All Films</a>
+                <a href="watchlist.html"
+                    class="text-pink-500 transition uppercase text-sm font-bold border-b-2 border-pink-500 pb-1">My
+                    Watchlists</a>
+
+                <div id="userProfile" class="relative group cursor-pointer">
+                    <img src="../src/icons/mat-avatar.svg" alt="Profile"
+                        class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-600 hover:border-pink-600 transition object-cover"
+                        id="profileToggle">
+                    <div id="logoutMenu"
+                        class="absolute right-0 mt-2 w-40 bg-zinc-800 border border-zinc-700 rounded-xl shadow-2xl hidden z-[60] overflow-hidden">
+                        <button id="logoutBtn"
+                            class="w-full justify-center px-3 py-2 text-sm font-bold uppercase text-zinc-200 hover:bg-pink-600 hover:text-white transition-colors flex items-center gap-2">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 lg:px-12 py-10">
+        <header class="mb-10">
+            <h1 class="text-3xl font-bold text-pink-600">My Watchlists (<span id="watchlistCount">0</span>)</h1>
+        </header>
+
+        <section id="watchlistContainer" class="flex flex-col gap-10">
+        </section>
+
+        <div id="emptyState" class="hidden text-center py-20 text-zinc-500 italic">
+            Your watchlist is currently empty.
+        </div>
+    </main>
+
+    <script src="../js/watchlist.js"></script>
+</body>
+
+</html>
