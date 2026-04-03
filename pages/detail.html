@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Movies</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="../js/detail.js" defer></script>
+</head>
+<body class="bg-zinc-800 text-white min-h-screen">
+    <header class="sticky top-0 z-50 bg-zinc-800 backdrop-blur-md border-b border-pink-600">
+        <nav class="p-4 flex justify-between items-center px-6 lg:px-12 max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+                <img src="../src/icons/logo.svg" alt="Logo" class="h-8 w-auto">
+                <span class="text-pink-600 font-bold text-xl tracking-wider uppercase">MovieSpace</span>
+            </div>
+            <div class="flex items-center gap-8">
+                <a href="movies.html"
+                    class="text-pink-500 transition uppercase text-sm font-bold border-b-2 border-pink-500 pb-1">All
+                    Films</a>
+                <a href="watchlist.html"
+                    class="hover:text-pink-500 transition uppercase text-sm font-medium text-zinc-200">My Watchlists</a>
+                <div id="userProfile" class="relative group cursor-pointer">
+                    <img src="../src/icons/mat-avatar.svg" alt="Profile"
+                        class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-600 hover:border-pink-600 transition object-cover"
+                        id="profileToggle">
+                    <div id="logoutMenu"
+                        class="absolute right-0 mt-2 w-40 bg-zinc-800 border border-zinc-700 rounded-xl shadow-2xl hidden z-[60] overflow-hidden">
+                        <button id="logoutBtn"
+                            class="w-full justify-center px-3 py-2 text-sm font-bold uppercase text-zinc-200 hover:bg-pink-600 hover:text-white transition-colors flex items-center gap-2">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <article class="max-w-7xl mx-auto p-6 lg:p-12">
+        <nav class="mb-8 text-zinc-500 text-sm italic">
+           <a href="../pages/movies.html" class="bg-pink-600 text-white px-3 py-1 rounded-full">All Films</a> / <span id="path-to-film" class="text-pink-500 font-semibold text-normal">Loading...</span>
+        </nav>
+        <div id="movie-content" class="flex flex-col md:flex-row gap-12">
+            <div class="w-full flex justify-center py-20">
+                <p class="animate-pulse text-zinc-500">Loading...</p>
+            </div>
+        </div>
+    </article>
+</body>
+</html>
