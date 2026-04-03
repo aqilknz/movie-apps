@@ -37,7 +37,7 @@
                     class="text-pink-500 transition uppercase text-sm font-bold border-b-2 border-pink-500 pb-1">All
                     Films</a>
                 <a href="watchlist.html"
-                    class="hover:text-pink-500 transition uppercase text-sm font-medium text-zinc-400">My Watchlists</a>
+                    class="hover:text-pink-500 transition uppercase text-sm font-medium text-zinc-200">My Watchlists</a>
                 <div id="userProfile" class="relative group cursor-pointer">
                     <img src="../src/icons/mat-avatar.svg" alt="Profile"
                         class="w-8 h-8 rounded-full bg-zinc-700 border-2 border-zinc-600 hover:border-pink-600 transition object-cover"
@@ -73,8 +73,8 @@
                     <select id="sortIMDB"
                         class="w-full bg-zinc-800 border border-zinc-700 text-zinc-200 px-4 py-2 rounded-full text-sm focus:outline-none focus:border-pink-600 transition cursor-pointer appearance-none">
                         <option value="" selected disabled>Sort By Rating</option>
-                        <!-- <option value="high" class="bg-zinc-800">Highest Rating</option>
-                        <option value="low" class="bg-zinc-800">Lowest Rating</option> -->
+                        <option value="high" class="bg-zinc-800">Highest Rating</option>
+                        <option value="low" class="bg-zinc-800">Lowest Rating</option>
                     </select>
                     <div class="absolute inset-y-0 right-3 flex items-center pointer-events-none">
                         <img src="../src/icons/swap_vert.svg" alt="updown" class="w-4 h-4 opacity-90">
@@ -90,8 +90,8 @@
             <span>Items per page: 10</span>
             <span>1 - 10 of 100</span>
             <div class="flex gap-2">
-                <button id="prevBtn" class="p-2 hover:text-pink-500 transition-colors text-xl"> < </button>
-                <button id="nextBtn" class="p-2 hover:text-pink-500 transition-colors text-xl">></button>
+                <button id="prevBtn" class="p-2 hover:text-pink-500 transition-colors text-xl cursor-pointer"> < </button>
+                <button id="nextBtn" class="p-2 hover:text-pink-500 transition-colors text-xl cursor-pointer">></button>
             </div>
         </footer>
     </main>
