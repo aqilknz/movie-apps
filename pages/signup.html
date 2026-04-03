@@ -1,104 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Signup - MovieSpace</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+      @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 
-        :root {
-            --font-outfit: "Outfit", sans-serif;
-        }
+      :root {
+        --font-outfit: "Outfit", sans-serif;
+      }
 
-        html,
-        body {
-            font-family: var(--font-outfit);
-        }
+      html,
+      body {
+        font-family: var(--font-outfit);
+      }
 
-        input:-webkit-autofill,
-        input:-webkit-autofill:hover,
-        input:-webkit-autofill:focus {
-            -webkit-text-fill-color: white;
-            -webkit-box-shadow: 0 0 0px 1000px #27272a inset;
-            transition: background-color 5000s ease-in-out 0s;
-        }
-        
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover,
+      input:-webkit-autofill:focus {
+        -webkit-text-fill-color: white;
+        -webkit-box-shadow: 0 0 0px 1000px #27272a inset;
+        transition: background-color 5000s ease-in-out 0s;
+      }
     </style>
-</head>
+  </head>
 
-<body class="bg-zinc-800 text-white min-h-screen flex flex-col">
-    <header class="sticky top-0 z-50 bg-zinc-800 backdrop-blur-md border-b border-pink-600">
-        <nav class="p-4 flex justify-between items-center px-6 lg:px-12 max-w-7xl mx-auto">
-            <div class="flex items-center gap-2">
-                <img src="../src/icons/logo.svg" alt="MovieSpace Logo" class="h-8 w-auto">
-                <span class="text-pink-600 font-bold text-xl tracking-wider">MOVIESPACE</span>
-            </div>
-            <div class="flex items-center gap-8">
-                <a href="../index.html"
-                    class="hover:text-pink-500 transition uppercase text-sm font-medium text-white">All Films</a>
-                <a href="login.html"
-                    class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full text-sm font-bold uppercase transition shadow-md">
-                    Login
-                </a>
-            </div>
-        </nav>
+  <body class="bg-zinc-800 text-white min-h-screen flex flex-col">
+    <header
+      class="sticky top-0 z-50 bg-zinc-800 backdrop-blur-md border-b border-pink-600"
+    >
+      <nav
+        class="p-4 flex justify-between items-center px-6 lg:px-12 max-w-7xl mx-auto"
+      >
+        <div class="flex items-center gap-2">
+          <img
+            src="../src/icons/logo.svg"
+            alt="MovieSpace Logo"
+            class="h-8 w-auto"
+          />
+          <span class="text-pink-600 font-bold text-xl tracking-wider"
+            >MOVIESPACE</span
+          >
+        </div>
+        <div class="flex items-center gap-8">
+          <a
+            href="../index.html"
+            class="hover:text-pink-500 transition uppercase text-sm font-medium text-white"
+            >All Films</a
+          >
+          <a
+            href="login.html"
+            class="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-full text-sm font-bold uppercase transition shadow-md"
+          >
+            Login
+          </a>
+        </div>
+      </nav>
     </header>
 
-    <main class="flex-grow flex flex-col items-center justify-center px-4 py-10">
-        <div class="w-full max-auto max-w-sm">
-            <div class="flex justify-center items-center mb-10">
-                <img src="../src/icons/logo.svg" alt="MovieSpace Logo" class="h-10 w-auto">
-                <h1 class="text-pink-600 font-bold text-2xl tracking-widest">MOVIESPACE</h1>
-            </div>
-
-            <form id="signupForm" class="space-y-8">
-                <div class="relative">
-                    <input type="email" id="email" required
-                        class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
-                        placeholder="Email">
-                    <label for="email"
-                        class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm">Email</label>
-                    <p id="emailError" class="text-pink-500 text-xs mt-1 hidden">User already exists!</p>
-                </div>
-
-                <div class="relative">
-                    <input type="password" id="password" required
-                        class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
-                        placeholder="Password">
-                    <label for="password"
-                        class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm">Password</label>
-                </div>
-
-                <div class="relative">
-                    <input type="password" id="confirmPassword" required
-                        class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
-                        placeholder="Confirm Password">
-                    <label for="confirmPassword"
-                        class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm">Confirm
-                        Password</label>
-                    <p id="confirmError" class="text-pink-500 text-xs mt-1 hidden">Passwords do not match.</p>
-                </div>
-
-                <div class="flex flex-col items-center gap-6 pt-4">
-                    <button type="submit"
-                        class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-12 rounded-full uppercase tracking-widest transition shadow-lg shadow-pink-600/20">
-                        Signup
-                    </button>
-                    <p class="text-xs uppercase tracking-widest text-zinc-400">
-                        Registered User? <a href="login.html"
-                            class="text-pink-500 hover:underline decoration-pink-500/50 underline-offset-4">Login
-                            Here</a>
-                    </p>
-                </div>
-            </form>
+    <main
+      class="flex-grow flex flex-col items-center justify-center px-4 py-10"
+    >
+      <div class="w-full max-w-[320px] sm:max-w-sm">
+        <div class="flex justify-center items-center mb-10 gap-2">
+          <img
+            src="../src/icons/logo.svg"
+            alt="MovieSpace Logo"
+            class="h-10 w-auto"
+          />
+          <h1 class="text-pink-600 font-bold text-2xl tracking-widest">
+            MOVIESPACE
+          </h1>
         </div>
+
+        <form id="signupForm" class="space-y-8">
+          <div class="relative">
+            <input
+              type="email"
+              id="email"
+              required
+              class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
+              placeholder="Email"
+            />
+            <label
+              for="email"
+              class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm"
+              >Email</label
+            >
+            <p id="emailError" class="text-pink-500 text-xs mt-1 hidden">
+              User already exists!
+            </p>
+          </div>
+
+          <div class="relative">
+            <input
+              type="password"
+              id="password"
+              required
+              class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
+              placeholder="Password"
+            />
+            <label
+              for="password"
+              class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm"
+              >Password</label
+            >
+          </div>
+
+          <div class="relative">
+            <input
+              type="password"
+              id="confirmPassword"
+              required
+              class="w-full bg-transparent border-b border-zinc-700 py-2 focus:outline-none focus:border-pink-600 transition peer placeholder-transparent"
+              placeholder="Confirm Password"
+            />
+            <label
+              for="confirmPassword"
+              class="absolute left-0 -top-3.5 text-zinc-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-pink-600 peer-focus:text-sm"
+              >Confirm Password</label
+            >
+            <p id="confirmError" class="text-pink-500 text-xs mt-1 hidden">
+              Passwords do not match.
+            </p>
+          </div>
+
+          <div class="flex flex-col items-center gap-6 pt-4">
+            <button
+              type="submit"
+              class="bg-pink-600 hover:bg-pink-700 text-white font-bold py-3 px-12 rounded-full uppercase tracking-widest transition shadow-lg shadow-pink-600/20"
+            >
+              Signup
+            </button>
+            <p class="text-xs uppercase tracking-widest text-zinc-400">
+              Registered User?
+              <a
+                href="login.html"
+                class="text-pink-500 hover:underline decoration-pink-500/50 underline-offset-4"
+                >Login Here</a
+              >
+            </p>
+          </div>
+        </form>
+      </div>
     </main>
 
     <script src="../js/signup.js"></script>
-
-</body>
-
+  </body>
 </html>
