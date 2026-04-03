@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Logika Logout
     logoutBtn?.addEventListener('click', () => {
         localStorage.removeItem('currentUser');
-        window.location.href = 'login.html'; 
+        window.location.href = 'login.html';
     });
 });
 // KONFIGURASI API & STATE
-const API_KEY = '8acf2d3481398b5274e8f40e7e52a294'; 
+const API_KEY = '8acf2d3481398b5274e8f40e7e52a294';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -46,63 +46,61 @@ const genreMap = {
 };
 
 // INISIALISASI DROPDOWN GENRE
-// function setupGenreDropdown() {
-//     const selectElement = document.getElementById('genreFilter');
-//     if (!selectElement) return;
+function setupGenreDropdown() {
+    const selectElement = document.getElementById('genreFilter');
+    if (!selectElement) return;
 
-//     // Sort genre berdasarkan abjad
-//     const sortedGenres = Object.entries(genreMap).sort((a, b) => a[1].localeCompare(b[1]));
+    // Sort genre berdasarkan abjad
+    const sortedGenres = Object.entries(genreMap).sort((a, b) => a[1].localeCompare(b[1]));
 
-//     sortedGenres.forEach(([id, name]) => {
-//         const option = document.createElement('option');
-//         option.value = id;
-//         option.textContent = name;
-//         option.className = "bg-zinc-800";
-//         selectElement.appendChild(option);
-//     });
+    sortedGenres.forEach(([id, name]) => {
+        const option = document.createElement('option');
+        option.value = id;
+        option.textContent = name;
+        option.className = "bg-zinc-800";
+        selectElement.appendChild(option);
+    });
 
-//     // Event Listener Filter Genre
-//     selectElement.addEventListener('change', (e) => {
-//         currentGenre = e.target.value;
-//         currentPage = 1; // Reset ke hal 1 saat ganti genre
-//         fetchMovies(currentPage);
-//     });
-// }
+    // Event Listener Filter Genre
+    selectElement.addEventListener('change', (e) => {
+        currentGenre = e.target.value;
+        currentPage = 1;
+        fetchMovies(currentPage);
+    });
+}
 
 // INISIALISASI SORT IMDB
-// function setupSortDropdown() {
-//     const sortElement = document.getElementById('sortIMDB');
-//     if (!sortElement) return;
+function setupSortDropdown() {
+    const sortElement = document.getElementById('sortIMDB');
+    if (!sortElement) return;
 
-//     sortElement.addEventListener('change', (e) => {
-//         currentSort = e.target.value;
-//         fetchMovies(currentPage);
-//     });
-// }
+    sortElement.addEventListener('change', (e) => {
+        currentSort = e.target.value;
+        fetchMovies(currentPage);
+    });
+}
 
 // FUNGSI FETCH DATA (GENRE & PAGINATION)
 async function fetchMovies(page = 1) {
     const movieContainer = document.getElementById('movieContainer');
     const movieCount = document.getElementById('movieCount');
-    
+
     movieContainer.innerHTML = `<div class="text-center py-20 text-zinc-500 italic">Loading ...</div>`;
 
     try {
-        // Menggunakan Discover API untuk filter genre yang akurat
         let url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=en-US&page=${page}&sort_by=popularity.desc`;
-        
+
         if (currentGenre) {
             url += `&with_genres=${currentGenre}`;
         }
 
         const response = await fetch(url);
         const data = await response.json();
-        
+
         if (data.results) {
-            // Ambil 10 film (TMDB kirim 20)
             let processedMovies = data.results.slice(0, moviesPerPage);
 
-            // Logika Pengurutan Rating Manual
+            // Logika Pengurutan Rating
             if (currentSort === "high") {
                 processedMovies.sort((a, b) => b.vote_average - a.vote_average);
             } else if (currentSort === "low") {
@@ -110,8 +108,7 @@ async function fetchMovies(page = 1) {
             }
 
             renderMovies(processedMovies);
-            
-            // Update total count (maksimal display 100 sesuai request)
+
             if (movieCount) movieCount.innerText = data.total_results > 100 ? 100 : data.total_results;
             updatePaginationUI();
         }
@@ -124,7 +121,7 @@ async function fetchMovies(page = 1) {
 // 6. RENDER KE HTML
 function renderMovies(movies) {
     const container = document.getElementById('movieContainer');
-    container.innerHTML = ''; 
+    container.innerHTML = '';
 
     movies.forEach(movie => {
         const genres = movie.genre_ids.slice(0, 3).map(id => genreMap[id] || "Movie");
@@ -151,12 +148,12 @@ function renderMovies(movies) {
                     <div class="flex flex-wrap gap-3 mt-6">
                         <button onclick="viewDetails(${movie.id})" class="bg-white text-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-tighter hover:bg-pink-600 hover:text-white transition duration-300">View Details</button>
                         <button onclick='addToWatchlist(${JSON.stringify({
-                            id: movie.id, 
-                            title: movie.title.replace(/'/g, ""), 
-                            img: movie.poster_path, 
-                            rating: movie.vote_average, 
-                            overview: movie.overview ? movie.overview.replace(/'/g, "") : ""
-                        })})' 
+            id: movie.id,
+            title: movie.title.replace(/'/g, ""),
+            img: movie.poster_path,
+            rating: movie.vote_average,
+            overview: movie.overview ? movie.overview.replace(/'/g, "") : ""
+        })})' 
                             class="bg-zinc-800 border border-zinc-700 text-white px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-tighter hover:bg-pink-600 hover:border-pink-600 transition duration-300">Add To Watchlists</button>
                     </div>
                 </div>
@@ -169,26 +166,26 @@ function renderMovies(movies) {
 function updatePaginationUI() {
     const startRange = ((currentPage - 1) * moviesPerPage) + 1;
     const endRange = Math.min(currentPage * moviesPerPage, totalMoviesGoal);
-    
+
     const paginationText = document.querySelector('footer span:nth-child(2)');
     if (paginationText) paginationText.innerText = `${startRange} - ${endRange} of ${totalMoviesGoal}`;
 
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
-    
+
     if (prevBtn) prevBtn.disabled = currentPage === 1;
     if (nextBtn) nextBtn.disabled = currentPage === (totalMoviesGoal / moviesPerPage);
-    
+
     [prevBtn, nextBtn].forEach(btn => {
-        if (btn?.disabled) { btn.classList.add('opacity-30', 'cursor-not-allowed'); } 
+        if (btn?.disabled) { btn.classList.add('opacity-30', 'cursor-not-allowed'); }
         else { btn.classList.remove('opacity-30', 'cursor-not-allowed'); }
     });
 }
 
 // listeners utama
 document.addEventListener('DOMContentLoaded', () => {
-    // setupGenreDropdown();
-    // setupSortDropdown();
+    setupGenreDropdown();
+    setupSortDropdown();
     fetchMovies(currentPage);
 
     const prevBtn = document.getElementById('prevBtn');
@@ -225,10 +222,11 @@ window.addToWatchlist = (movie) => {
     } else {
         watchlist.push(movie);
         localStorage.setItem('watchlist', JSON.stringify(watchlist));
+        alert('Film berhasil ditambahkan ke Watchlist!');
     }
 };
 
 window.viewDetails = (id) => {
     localStorage.setItem('selectedMovieId', id);
-    window.location.href = '#';
+    window.location.href = '../pages/detail.html';
 };
