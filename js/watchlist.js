@@ -33,7 +33,7 @@ function renderWatchlist() {
     const container = document.getElementById('watchlistContainer');
     const countElement = document.getElementById('watchlistCount');
     const emptyState = document.getElementById('emptyState');
-    
+
     const watchlist = JSON.parse(localStorage.getItem('watchlist')) || [];
     const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
@@ -105,5 +105,5 @@ if (logoutBtn) {
 
 window.viewDetails = (id) => {
     localStorage.setItem('selectedMovieId', id);
-    window.location.href = '#';
+    window.location.href = '../pages/detail.html';
 };
